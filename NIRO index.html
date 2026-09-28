@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NIRO, the Next Intelligent Resource Optimizer: an ideathon concept for trusted, role-aware knowledge and workflow guidance.">
+  <meta name="theme-color" content="#07111f">
+  <title>NIRO | Next Intelligent Resource Optimizer</title>
+  <style>
+    :root{
+      --bg:#050914; --bg2:#081526; --panel:rgba(15,29,49,.72); --panel2:#0d1c30;
+      --text:#f4f8ff; --muted:#9eb0c8; --cyan:#39d9ff; --blue:#4b7dff;
+      --violet:#9d72ff; --green:#55e6a5; --line:rgba(162,199,255,.15);
+      --shadow:0 34px 100px rgba(0,0,0,.45); --radius:26px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);background:var(--bg);font-family:Inter,"Segoe UI",Arial,sans-serif;line-height:1.65;overflow-x:hidden}
+    a{color:inherit}.wrap{width:min(1160px,calc(100% - 36px));margin:auto}
+    .grid-bg{position:fixed;inset:0;pointer-events:none;opacity:.19;background-image:linear-gradient(rgba(95,166,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(95,166,255,.18) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 88%)}
+    nav{position:fixed;inset:0 0 auto;z-index:20;background:rgba(5,9,20,.66);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{text-decoration:none;font-weight:950;letter-spacing:.16em}.brand span{color:var(--cyan)}
+    .nav-links{display:flex;align-items:center;gap:18px}.nav-links a{text-decoration:none;color:#c8d5e6;font-size:.9rem;font-weight:700}.nav-links .pill{padding:9px 14px;border:1px solid rgba(57,217,255,.35);border-radius:999px;color:var(--cyan)}
+    .hero{min-height:100vh;display:grid;align-items:center;position:relative;padding:120px 0 78px;background:radial-gradient(circle at 75% 25%,rgba(75,125,255,.22),transparent 27rem),radial-gradient(circle at 20% 20%,rgba(57,217,255,.12),transparent 25rem),linear-gradient(135deg,#050914,#081526 55%,#07101c)}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:62px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 13px;border:1px solid rgba(57,217,255,.28);border-radius:999px;background:rgba(57,217,255,.06);color:#a8efff;font-size:.76rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;animation:rise .8s both}.pulse{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan)}
+    h1{margin:20px 0 18px;font-size:clamp(4rem,11vw,8.6rem);line-height:.83;letter-spacing:-.07em}.hero h1{animation:rise .85s .07s both}.gradient{background:linear-gradient(90deg,#fff 10%,var(--cyan),#7c91ff,var(--violet));color:transparent;background-clip:text;-webkit-background-clip:text}.subtitle{margin:0;font-size:clamp(1.25rem,2.5vw,2.05rem);font-weight:800;color:#d4e3f5;animation:rise .85s .13s both}.lead{max-width:710px;color:var(--muted);font-size:1.07rem;animation:rise .85s .19s both}.actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px;animation:rise .85s .25s both}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:12px 19px;border-radius:13px;text-decoration:none;font-weight:850;transition:.25s}.btn:hover{transform:translateY(-3px)}.primary{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#04101f;box-shadow:0 14px 40px rgba(57,217,255,.19)}.secondary{border:1px solid var(--line);background:rgba(255,255,255,.035)}
+    @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+    .core{position:relative;width:min(440px,85vw);aspect-ratio:1;margin:auto;display:grid;place-items:center;animation:coreIn 1.05s .18s both}.ring{position:absolute;border-radius:50%;border:1px solid rgba(57,217,255,.25);animation:spin 18s linear infinite}.ring.r1{inset:3%}.ring.r2{inset:17%;border-color:rgba(157,114,255,.32);animation-direction:reverse;animation-duration:13s}.ring.r3{inset:30%;border-style:dashed;animation-duration:8s}.ring:before{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:var(--cyan);top:12%;left:12%;box-shadow:0 0 18px var(--cyan)}
+    .core-center{position:relative;z-index:2;width:46%;aspect-ratio:1;display:grid;place-items:center;text-align:center;border-radius:30%;transform:rotate(45deg);background:linear-gradient(145deg,rgba(57,217,255,.28),rgba(75,125,255,.2));border:1px solid rgba(131,227,255,.44);box-shadow:0 0 80px rgba(57,217,255,.18),inset 0 0 35px rgba(255,255,255,.05)}.core-center div{transform:rotate(-45deg)}.core-center strong{display:block;font-size:2.4rem;letter-spacing:.1em}.core-center small{color:#a9bfd7;font-weight:800;letter-spacing:.08em}
+    @keyframes spin{to{transform:rotate(360deg)}}@keyframes coreIn{from{opacity:0;transform:scale(.72) rotate(-12deg)}to{opacity:1;transform:none}}
+    .metrics{position:relative;z-index:4;display:grid;grid-template-columns:repeat(3,1fr);margin-top:-35px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:rgba(10,22,39,.82);backdrop-filter:blur(16px);box-shadow:var(--shadow)}.metric{padding:24px 27px;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric strong{display:block;color:var(--cyan);font-size:1.1rem}.metric span{color:var(--muted);font-size:.9rem}
+    section{padding:105px 0}.label{margin:0 0 7px;color:var(--cyan);font-size:.76rem;font-weight:950;letter-spacing:.16em;text-transform:uppercase}.title{margin:0 0 20px;font-size:clamp(2.3rem,5vw,4.6rem);line-height:1.04;letter-spacing:-.045em}.intro{max-width:790px;margin:0 0 42px;color:var(--muted);font-size:1.05rem}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{position:relative;min-height:235px;padding:28px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));overflow:hidden;transition:.3s}.card:hover{transform:translateY(-8px);border-color:rgba(57,217,255,.35);box-shadow:0 25px 60px rgba(0,0,0,.28)}.card:after{content:"";position:absolute;width:140px;height:140px;right:-65px;bottom:-65px;border-radius:50%;background:radial-gradient(circle,rgba(57,217,255,.16),transparent 70%)}.icon{width:46px;height:46px;display:grid;place-items:center;margin-bottom:20px;border-radius:13px;background:linear-gradient(135deg,rgba(57,217,255,.2),rgba(75,125,255,.18));border:1px solid rgba(57,217,255,.22);font-size:1.2rem}.card h3{margin:0 0 9px;font-size:1.25rem}.card p{margin:0;color:var(--muted)}
+    .solution{background:linear-gradient(180deg,transparent,rgba(15,34,58,.42),transparent)}.solution-grid{display:grid;grid-template-columns:.84fr 1.16fr;gap:26px;align-items:stretch}.statement{padding:40px;border:1px solid rgba(57,217,255,.22);border-radius:var(--radius);background:radial-gradient(circle at 20% 0%,rgba(57,217,255,.13),transparent 20rem),var(--panel2)}.statement blockquote{margin:0;font-size:clamp(1.65rem,3.5vw,2.75rem);line-height:1.16;font-weight:880;letter-spacing:-.035em}.statement .accent{color:var(--cyan)}.statement p{color:var(--muted)}.capabilities{display:grid;grid-template-columns:1fr 1fr;gap:16px}.cap{padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--panel)}.cap b{display:block;margin-bottom:5px;color:#dffaff}.cap span{color:var(--muted);font-size:.92rem}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:center;margin-top:45px}.flow-step{position:relative;padding:25px 15px;text-align:center;border:1px solid var(--line);border-radius:18px;background:var(--panel)}.flow-step strong{display:block;color:var(--cyan);font-size:.78rem;letter-spacing:.1em}.flow-step span{display:block;margin-top:7px;font-weight:800}.arrow{text-align:center;color:var(--cyan);font-size:1.5rem}
+    .leadership{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px}.lead-card,.team-card{padding:38px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}.role{display:inline-flex;padding:7px 11px;border-radius:999px;background:rgba(157,114,255,.12);border:1px solid rgba(157,114,255,.3);color:#d7c6ff;font-size:.75rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.lead-card h3{font-size:2rem;margin:17px 0 8px}.lead-card p,.team-card p{color:var(--muted)}.team-count{font-size:clamp(4rem,8vw,7rem);line-height:.9;font-weight:950;color:transparent;background:linear-gradient(180deg,#fff,var(--cyan));background-clip:text;-webkit-background-clip:text}.team-card h3{margin:12px 0 5px}.contribution-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}.contribution{padding:12px 14px;border:1px solid var(--line);border-radius:12px;color:#d7e4f4;background:rgba(255,255,255,.025);font-size:.9rem}
+    .docs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.doc{display:flex;flex-direction:column;min-height:250px;padding:27px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02));text-decoration:none;transition:.3s}.doc:hover{transform:translateY(-7px);border-color:rgba(57,217,255,.4)}.doc-type{color:var(--cyan);font-size:.75rem;font-weight:950;letter-spacing:.13em;text-transform:uppercase}.doc h3{margin:15px 0 8px;font-size:1.2rem;word-break:break-word}.doc p{color:var(--muted);font-size:.92rem}.open{margin-top:auto;color:#dffaff;font-weight:850}.notice{margin-top:22px;padding:17px 19px;border:1px solid rgba(85,230,165,.23);border-radius:14px;background:rgba(85,230,165,.06);color:#bcefd9;font-size:.91rem}
+    .roadmap{position:relative;padding-left:38px}.roadmap:before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--cyan),rgba(57,217,255,.05))}.phase{position:relative;padding:24px 28px;margin-bottom:15px;border:1px solid var(--line);border-radius:17px;background:var(--panel)}.phase:before{content:"";position:absolute;left:-37px;top:31px;width:13px;height:13px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan)}.phase b{color:var(--cyan)}.phase h3{margin:4px 0}.phase p{margin:0;color:var(--muted)}
+    .closing{text-align:center}.closing-box{padding:65px 28px;border:1px solid rgba(57,217,255,.23);border-radius:30px;background:radial-gradient(circle at 50% 0%,rgba(57,217,255,.14),transparent 24rem),var(--panel2)}.closing h2{margin:0;font-size:clamp(2.4rem,6vw,5.4rem);letter-spacing:-.055em}.closing p{max-width:700px;margin:16px auto 27px;color:var(--muted)}
+    footer{padding:31px 0;border-top:1px solid var(--line);color:#7f94ae;text-align:center;font-size:.88rem}.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}.reveal.show{opacity:1;transform:none}
+    @media(max-width:900px){.hero-grid,.solution-grid,.leadership{grid-template-columns:1fr}.hero{text-align:center}.lead{margin-left:auto;margin-right:auto}.actions{justify-content:center}.core{width:min(340px,82vw)}.cards,.docs{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.metrics{grid-template-columns:1fr;margin-top:-20px}.metric{border-right:0;border-bottom:1px solid var(--line)}.metric:last-child{border-bottom:0}}
+    @media(max-width:620px){.nav-links a:not(.pill){display:none}.cards,.docs,.capabilities,.contribution-list{grid-template-columns:1fr}.hero{padding-top:105px}h1{font-size:4.25rem}.btn{width:100%}.core{width:275px}.statement,.lead-card,.team-card{padding:27px}section{padding:80px 0}}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <nav><div class="wrap nav"><a class="brand" href="#home">NIRO<span>.</span></a><div class="nav-links"><a href="#solution">Solution</a><a href="#team">Team</a><a href="#documents">Documents</a><a class="pill" href="#documents">Explore project</a></div></div></nav>
+
+  <header class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="pulse"></span> Ideathon Innovation Project</span>
+        <h1 class="gradient">NIRO</h1>
+        <p class="subtitle">Next Intelligent Resource Optimizer</p>
+        <p class="lead">A secure, role-aware AI knowledge and workflow platform designed to connect employees with trusted guidance, approved sources, training, and the right next step.</p>
+        <div class="actions"><a class="btn primary" href="#solution">Experience the vision ↓</a><a class="btn secondary" href="#documents">View project documents ↗</a></div>
+      </div>
+      <div class="core" aria-label="NIRO intelligence core illustration">
+        <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+        <div class="core-center"><div><strong>NIRO</strong><small>TRUSTED AI</small></div></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap metrics reveal">
+      <div class="metric"><strong>AI Knowledge Assistant</strong><span>Source-backed organizational guidance</span></div>
+      <div class="metric"><strong>Role-Aware Experience</strong><span>Context shaped by identity and permissions</span></div>
+      <div class="metric"><strong>Workflow Intelligence</strong><span>From question to actionable next step</span></div>
+    </div>
+
+    <section id="problem"><div class="wrap">
+      <p class="label reveal">The challenge</p><h2 class="title reveal">Knowledge exists.<br>Access creates friction.</h2>
+      <p class="intro reveal">Employees often search across disconnected documents, training, conversations, and systems. New joiners need context, experienced employees face repeated questions, and useful knowledge can remain trapped with individuals.</p>
+      <div class="cards">
+        <article class="card reveal"><div class="icon">⌕</div><h3>Fragmented knowledge</h3><p>SOPs, training materials, records, and conversations can live across separate sources.</p></article>
+        <article class="card reveal"><div class="icon">↗</div><h3>Onboarding friction</h3><p>New joiners need role-specific explanations and faster access to approved guidance.</p></article>
+        <article class="card reveal"><div class="icon">∞</div><h3>Repeated questions</h3><p>Experienced colleagues may repeatedly answer routine questions instead of focusing on complex work.</p></article>
+      </div>
+    </div></section>
+
+    <section class="solution" id="solution"><div class="wrap">
+      <p class="label reveal">The NIRO shift</p><h2 class="title reveal">From information search<br>to trusted intelligence.</h2>
+      <div class="solution-grid">
+        <div class="statement reveal"><blockquote>“The organization does not have a knowledge problem. It has a <span class="accent">knowledge access</span> problem.”</blockquote><p>NIRO is designed as an intelligence layer above existing tools. It retrieves authorized knowledge, explains it clearly, cites the source, and helps the employee understand the next action.</p></div>
+        <div class="capabilities">
+          <div class="cap reveal"><b>Conversational Assistant</b><span>Ask work questions in natural language.</span></div>
+          <div class="cap reveal"><b>SOP Navigator</b><span>Find the relevant procedure and source section.</span></div>
+          <div class="cap reveal"><b>Role-Aware Guidance</b><span>Tailor retrieval to role, team, and permissions.</span></div>
+          <div class="cap reveal"><b>Training Intelligence</b><span>Turn approved learning content into usable knowledge.</span></div>
+          <div class="cap reveal"><b>Smart Query Routing</b><span>Guide unresolved questions toward the appropriate support path.</span></div>
+          <div class="cap reveal"><b>Knowledge Feedback</b><span>Flag missing, incorrect, or outdated content for review.</span></div>
+        </div>
+      </div>
+      <div class="flow reveal">
+        <div class="flow-step"><strong>01</strong><span>Employee asks</span></div><div class="arrow">→</div>
+        <div class="flow-step"><strong>02</strong><span>NIRO understands context</span></div><div class="arrow">→</div>
+        <div class="flow-step"><strong>03</strong><span>Approved knowledge retrieved</span></div>
+      </div>
+      <div class="flow reveal" style="margin-top:12px">
+        <div class="flow-step"><strong>04</strong><span>Grounded answer generated</span></div><div class="arrow">→</div>
+        <div class="flow-step"><strong>05</strong><span>Source and checklist shown</span></div><div class="arrow">→</div>
+        <div class="flow-step"><strong>06</strong><span>Employee acts confidently</span></div>
+      </div>
+    </div></section>
+
+    <section id="team"><div class="wrap">
+      <p class="label reveal">Ideathon participation</p><h2 class="title reveal">Built through team leadership<br>and product thinking.</h2>
+      <div class="leadership">
+        <article class="lead-card reveal"><span class="role">Team Lead & Project Contributor</span><h3>Raghavendra Therupalli</h3><p>Led a four-person ideathon team, shaped the NIRO product concept, and contributed to the idea overview, master product blueprint, and pitch materials.</p><div class="contribution-list"><div class="contribution">Product concept</div><div class="contribution">Problem framing</div><div class="contribution">Experience design</div><div class="contribution">Pitch development</div></div></article>
+        <article class="team-card reveal"><div class="team-count">4</div><h3>Team members, including the lead</h3><p>A collaborative ideathon effort focused on turning scattered enterprise knowledge into a trusted, role-aware AI experience. The site presents the project outcome without disclosing private team-member details.</p><div class="contribution-list"><div class="contribution">AI assistant vision</div><div class="contribution">Knowledge architecture</div><div class="contribution">Workflow guidance</div><div class="contribution">Executive storytelling</div></div></article>
+      </div>
+    </section>
+
+    <section id="roadmap"><div class="wrap">
+      <p class="label reveal">Product direction</p><h2 class="title reveal">A focused path from idea<br>to enterprise platform.</h2>
+      <div class="roadmap">
+        <article class="phase reveal"><b>Phase 1</b><h3>Trusted Knowledge Assistant</h3><p>Onboarding, SOP retrieval, training summaries, FAQs, citations, role-aware responses, and feedback.</p></article>
+        <article class="phase reveal"><b>Phase 2</b><h3>Daily Workflow Companion</h3><p>Guided checklists, contextual process support, learning recommendations, integrations, and knowledge analytics.</p></article>
+        <article class="phase reveal"><b>Phase 3</b><h3>Enterprise Knowledge Platform</h3><p>Broader governed knowledge, workflow orchestration, and intelligent recommendations across teams.</p></article>
+      </div>
+    </section>
+
+    <section id="documents"><div class="wrap">
+      <p class="label reveal">Project library</p><h2 class="title reveal">Explore what was built.</h2>
+      <p class="intro reveal">Keep these three files in the same GitHub repository folder as this index.html file. The cards will then open or download the original documents.</p>
+      <div class="docs">
+        <a class="doc reveal" href="Niro_Idea_Overview.docx" download><span class="doc-type">DOCX · Concept</span><h3>Niro_Idea_Overview.docx</h3><p>The ideathon problem statement, proposed solution, expected impact, and operating concept.</p><span class="open">Download idea overview ↓</span></a>
+        <a class="doc reveal" href="Project_NIRO_Master_Product_Blueprint_v1-1.docx" download><span class="doc-type">DOCX · Blueprint</span><h3>Project_NIRO_Master_Product_Blueprint_v1-1.docx</h3><p>The product vision, experience, architecture, governance, MVP, metrics, roadmap, and pitch blueprint.</p><span class="open">Download blueprint ↓</span></a>
+        <a class="doc reveal" href="NIRO_AI_Assistant_Pitch_Deck_Final%202.pptx" download><span class="doc-type">PPTX · Pitch Deck</span><h3>NIRO_AI_Assistant_Pitch_Deck_Final 2.pptx</h3><p>The presentation introducing NIRO as a smart work companion and trusted intelligence layer.</p><span class="open">Download pitch deck ↓</span></a>
+      </div>
+      <div class="notice reveal"><strong>Public sharing reminder:</strong> anyone with this site link can download these files when the GitHub repository is public. Remove confidential or internal-only information before publishing.</div>
+    </div></section>
+
+    <section class="closing"><div class="wrap"><div class="closing-box reveal"><p class="label">The NIRO vision</p><h2>Discover instantly.<br><span class="gradient">Act confidently.</span></h2><p>Connect every employee with the right knowledge, trusted guidance, and workflow at the moment it is needed.</p><a class="btn primary" href="#documents">Open the project library ↗</a></div></div></section>
+  </main>
+
+  <footer><div class="wrap">NIRO · Next Intelligent Resource Optimizer · Ideathon Project Showcase</div></footer>
+  <script>
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target)}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(element=>observer.observe(element));
+  </script>
+</body>
+</html>
